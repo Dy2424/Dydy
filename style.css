@@ -1,0 +1,433 @@
+/* style.css */
+
+/* Fond sombre pour accentuer les effets */
+body {
+    font-size: 15pt;
+    background-color: floralwhite;
+    color: #fff;
+    font-family: 'Arial', sans-serif;
+}
+
+/* Reset de base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Styles de l'en-tête */
+.header {
+    background-color: rgba(74, 106, 215, 0.9); /* Couleur de fond de l'en-tête */
+    color: #fff;
+    padding: 20px 10px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    backdrop-filter: blur(10px); /* Optionnel: ajoute un effet de flou */
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Styles du titre avec effet de glitch */
+.title {
+    font-size: 36px;
+    position: relative;
+    display: inline-block;
+    color: #fff;
+}
+
+.glitch {
+    position: relative;
+    color: #fff;
+    font-size: 48px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    overflow: hidden;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #ff00cc, #3333ff);
+    overflow: hidden;
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 2s infinite;
+    mix-blend-mode: multiply;
+}
+
+.glitch::after {
+    clip: rect(0, 900px, 0, 0);
+    animation: glitch 1.5s infinite reverse;
+}
+
+@keyframes glitch {
+    0% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.5deg);
+    }
+    10% {
+        clip: rect(10px, 900px, 50px, 0);
+        transform: skew(0.5deg);
+    }
+    20% {
+        clip: rect(10px, 900px, 80px, 0);
+        transform: skew(-0.5deg);
+    }
+    30% {
+        clip: rect(20px, 900px, 100px, 0);
+        transform: skew(0.5deg);
+    }
+    40% {
+        clip: rect(30px, 900px, 120px, 0);
+        transform: skew(-0.5deg);
+    }
+    50% {
+        clip: rect(20px, 900px, 100px, 0);
+        transform: skew(0.5deg);
+    }
+    60% {
+        clip: rect(10px, 900px, 80px, 0);
+        transform: skew(-0.5deg);
+    }
+    70% {
+        clip: rect(10px, 900px, 50px, 0);
+        transform: skew(0.5deg);
+    }
+    80% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(-0.5deg);
+    }
+    90% {
+        clip: rect(10px, 900px, 50px, 0);
+        transform: skew(0.5deg);
+    }
+    100% {
+        clip: rect(0, 900px, 0, 0);
+        transform: skew(0.5deg);
+    }
+}
+
+/* Styles de la navigation */
+.nav {
+    position: relative;
+}
+
+/* Bouton de menu */
+.menu-toggle {
+    display: none; /* Caché par défaut */
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Liste du menu */
+.menu {
+    list-style: none;
+    display: flex;
+    position: relative;
+    z-index: 500; /* Assure que le menu reste au-dessus des autres éléments */
+}
+
+.menu li {
+    margin-left: 20px;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.menu li a:hover {
+    color: #e7bfd4; /* Couleur au survol */
+}
+
+/* Menu déroulant pour les petits écrans */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block; /* Affiché sur les petits écrans */
+    }
+
+    .menu {
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background-color: rgba(74, 106, 215, 0.9); /* Couleur de fond du menu déroulant */
+        flex-direction: column;
+        width: 200px;
+        border-radius: 8px;
+        overflow: hidden;
+        max-height: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: max-height 0.3s ease-out, opacity 0.3s ease-out, transform 0.3s ease-out;
+    }
+
+    .menu li {
+        margin: 0;
+    }
+
+    .menu li a {
+        display: block;
+        padding: 10px 20px;
+    }
+
+    /* Lorsque le menu est ouvert */
+    .menu.open {
+        max-height: 500px; /* Ajuste selon le nombre d'éléments */
+        opacity: 1;
+        transform: translateY(0);
+        transition: max-height 0.5s ease-in, opacity 0.5s ease-in, transform 0.5s ease-in;
+    }
+}
+
+/* Styles des titres */
+.H2 {
+    text-decoration: underline;
+    margin-bottom: 20px;
+}
+
+.H3, .H4 {
+    text-decoration: underline;
+}
+
+/* Container principal */
+.Container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Styles des Div1 et Div2 */
+.Div1, .Div2 {
+    border-radius: 18px;
+    margin: 30px 10px;
+    padding: 10px;
+    width: 100%;
+    height: auto;
+    background-color: floralwhite;
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Div1 {
+    height: 400px;
+    background: 
+        linear-gradient(rgba(74, 106, 215, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image.jpg');
+}
+
+.Div1.clickable:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.Div1:active {
+    transform: scale(0.95);
+    background: 
+        linear-gradient(rgba(157, 168, 230, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image.jpg');
+}
+
+.Div2 {
+    height: auto;
+    text-align: center;
+}
+
+.Div2-1, .Div2-2 {
+    border-radius: 18px;
+    margin: 10px;
+    padding: 10px;
+    background-color: #9da8e6;
+    background: 
+        linear-gradient(rgba(157, 168, 230, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(1).jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Div2-1:hover, .Div2-2:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.Div2-1:active, .Div2-2:active {
+    transform: scale(0.95);
+    background: 
+        linear-gradient(rgba(231, 191, 212, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(1).jpg');
+}
+
+/* Styles des Div2-2-1 et Div2-2-2 */
+.Div2-2-1, .Div2-2-2 {
+    border-radius: 18px;
+    width: 48%; /* Réduit la largeur pour laisser un espace entre les deux divs */
+    height: 300px;
+    padding: 10px;
+    background-color: #e7bfd4;
+    background: 
+        linear-gradient(rgba(231, 191, 212, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(2).jpg');
+    background-size: cover;
+    background-position: center;
+    box-sizing: border-box;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.Div2-2-1:hover, .Div2-2-2:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+}
+
+.Div2-2-1:active {
+    transform: scale(0.95);
+    background: 
+        linear-gradient(rgba(231, 191, 212, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(2).jpg');
+}
+
+.Div2-2-2 {
+    margin-left: 10px;
+    background: 
+        linear-gradient(rgba(231, 191, 212, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(3).jpg');
+}
+
+.Div2-2-2:active {
+    transform: scale(0.95);
+    background: 
+        linear-gradient(rgba(231, 191, 212, 0.5), rgba(0, 0, 0, 0.5)),
+        url('Image(3).jpg');
+}
+
+/* Animation de dégradé animé */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Appliquer l'animation de dégradé animé sans supprimer les images de fond */
+.Div1, .Div2-1, .Div2-2-1, .Div2-2-2 {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
+    animation: gradientAnimation 15s ease infinite;
+    background-image: 
+        linear-gradient(-45deg, rgba(231, 191, 212, 0.5), rgba(74, 106, 215, 0.5), rgba(157, 168, 230, 0.5), rgba(231, 191, 212, 0.5)),
+        url('Image.jpg'), /* Remplace 'Image.jpg' par l'image correspondante */
+        url('Image(1).jpg'),
+        url('Image(2).jpg'),
+        url('Image(3).jpg');
+}
+
+/* Effet de lumière dynamique */
+.Div1::before, .Div2-1::before, .Div2-2-1::before, .Div2-2-2::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: rotate(45deg);
+    animation: lightSweep 5s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes lightSweep {
+    0% {
+        transform: rotate(0deg) translateX(-100%);
+    }
+    100% {
+        transform: rotate(360deg) translateX(100%);
+    }
+}
+
+/* Responsive Design pour les divs côte à côte */
+.Div2-2-1, .Div2-2-2 {
+    float: left;
+}
+
+.Div2-2-2 {
+    float: right;
+}
+
+.Div2-2 {
+    border-radius: 18px;
+    height: auto; /* Ajuste la hauteur pour éviter les débordements sur mobile */
+    margin: 10px;
+    padding: 10px;
+    overflow: hidden; /* Pour éviter les débordements */
+}
+
+@media (max-width: 768px) {
+    .Div2-2-1, .Div2-2-2 {
+        width: 100%; /* Prend la totalité de la largeur */
+        float: none; /* Supprime le float */
+        margin: 0 0 10px 0; /* Ajoute un espace entre les divs */
+    }
+
+    .Div2-2 {
+        height: auto; /* Ajuste automatiquement la hauteur */
+    }
+}
+
+/* Animation de pression pour les divs */
+.clickable, .Div2-1, .Div2-2-1, .Div2-2-2 {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.clickable:active, .Div2-1:active, .Div2-2-1:active, .Div2-2-2:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Effet de glow sur les divs */
+.Div1, .Div2-1, .Div2-2-1, .Div2-2-2 {
+    box-shadow: 0 0 20px rgba(74, 106, 215, 0.5);
+    transition: box-shadow 0.3s ease;
+}
+
+.Div1:hover, .Div2-1:hover, .Div2-2-1:hover, .Div2-2-2:hover {
+    box-shadow: 0 0 40px rgba(74, 106, 215, 1);
+}
